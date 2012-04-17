@@ -3,7 +3,7 @@
 <head>
   <title></title>
   <style>
-    @import url('sp://import/css/eve.css');
+    @import url('sp://import/css/adam.css');
     @import url('sp://import/css/player.css');
     @import url('sp://import/css/ui.css');
   </style>
@@ -26,16 +26,13 @@
 <script id="event-template" type="text/x-handlebars-template">
   <div class="event">
     <div class="event-image">
+      {{#if uri}}<a href="{{uri}}" class="play">Play</a>{{/if}}
       <img src="{{image_url}}">
     </div>
     <div class="event-info">
       <h2>{{artists.headliner}}</h2>
       <h3>{{venue.name}}</h3>
       <h4>{{startDate}}</h4>
-
-      <div class="artist-play">
-        <a href="{{uri}}">Play</a>
-      </div>
     </div>
   </div>
 </script>

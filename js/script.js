@@ -16,14 +16,26 @@ $(function() {
 
   $('#location').html(geoip_city()+', '+geoip_region_name());
 
-  $('.artist-play a').live('click', function() {
+  $('a.play').live('click', function() {
     play($(this).attr('href'));
+
+    $('a.pause').attr('class', 'play');
+    $(this).addClass('pause');
+    return false;
+  });
+
+  $('a.pause').live('click', function() {
+    pause($(this).attr('href'));
+
+    $(this).removeClass('pause');
+    $(this).addClass('play');
     return false;
   });
 });
 
+
 function findEvents(lat, lng) {
-  $.getJSON('http://ws.audioscrobbler.com/2.0/?method=geo.getevents&lat='+lat+'&long='+lng+'&api_key=b25b959554ed76058ac220b7b2e0a026&limit=50&format=json', function(d) {
+  $.getJSON('http://ws.audioscrobbler.com/2.0/?method=geo.getevents&lat='+lat+'&long='+lng+'&api_key=b25b959554ed76058ac220b7b2e0a026&limit=102&format=json', function(d) {
     log(d);
 
     parseEvents(d);
@@ -38,8 +50,6 @@ function parseEvents(d) {
     item.image_url = item.image[3]['#text'];
     item.startDate = Date.create(item.startDate).format('{Weekday}, {Month} {ord}, {yyyy}');
 
-    log(item.artists.headliner);
-
     var search = new models.Search(item.artists.headliner);
     search.localResults = models.LOCALSEARCHRESULTS.APPEND;
     // search.searchAlbums = false;
@@ -51,14 +61,12 @@ function parseEvents(d) {
       
       if ( search.tracks.length > 0 ) {
         search.tracks.forEach(function(track) {
-          item.uri = track.data.uri;
+          item.uri = track.data.artists[0].uri;
           i++;
 
           if ( i == search.tracks.length ) {
             var html = template(item);
             $('#events').append(html);
-          } else {
-
           }
           // log(track.data.uri);
         });
@@ -69,9 +77,19 @@ function parseEvents(d) {
     });
 
     search.appendNext();
+
+    if ( i == d.events.event.length - 1 ) {
+      setTimeout(function() {
+        setHeights($('.event'));
+      }, 500);
+    }
   });
 }
 
 function play(uri) {
   player.play(uri);
+}
+
+function pause(uri) {
+  // player.pause();
 }

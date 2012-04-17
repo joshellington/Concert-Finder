@@ -1,13 +1,9 @@
 
 
-header {
-  border-bottom:1px solid #fff;
-}
-
 h1 {
   font-size:48px;
   padding:20px;
-  margin-top:20px;
+  margin:20px 0;
 }
 
   h1 span.float {
@@ -15,30 +11,87 @@ h1 {
     font-size:13px;
   }
 
-.event {
-  overflow:hidden;
-  border-bottom:1px solid #fff;
-  padding:0;
-  margin:0;
+#events {
 }
 
+.event {
+  float:left;
+  width:33%;
+  /*height:400px;*/
+  padding:0;
+  margin:0;
+  border-right:1px solid #222;
+  border-bottom:1px solid #222;
+  position:relative;
+  background:#373737;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+  .event:hover {
+    background:#444;
+  }
+
   .event-image {
-    float:left;
-    display:inline;
-    padding-right:20px;
+    padding-bottom:10px;
+    max-height:225px;
+    overflow:hidden;
+    position:relative;
   }
 
     .event-image img {
       display:block;
+      width:100%;
     }
 
+    .event a.play {
+      display:block;
+      width:43px;
+      height:43px;
+      position:absolute;
+      bottom:15px;
+      left:15px;
+      text-indent:-9999px;
+      background:url(../img/Play-Medium.png) no-repeat;
+    }
+
+      .event a.play:hover {
+        background:url(../img/Play-Medium-Hover.png) no-repeat;
+      }
+
+      .event a.play:active {
+        background:url(../img/Play-Medium-Pressed.png) no-repeat;
+      }
+
+    .event a.pause {
+      display:block;
+      width:43px;
+      height:43px;
+      position:absolute;
+      bottom:15px;
+      left:15px;
+      text-indent:-9999px;
+      background:url(../img/Pause-Medium.png) no-repeat;
+    }
+
+      .event a.pause:hover {
+        background:url(../img/Pause-Medium-Hover.png) no-repeat;
+      }
+
+      .event a.pause:active {
+        background:url(../img/Pause-Medium-Pressed.png) no-repeat;
+      }
+
   .event-info {
-    padding:20px 0;
+    padding:20px;
   }
 
     .event-info h2 {
-      font-size:18px;
-      line-height:1;
+      font-size:20px;
+      line-height:1.3;
       padding:0 0 5px;
       margin:0;
     }
@@ -53,3 +106,10 @@ h1 {
       font-size:11px;
       margin:0;
     }
+
+  .artist-play a {
+    display:inline-block;
+    background:#fff;
+    padding:6px 8px;
+    border-radius:4px;
+  }
