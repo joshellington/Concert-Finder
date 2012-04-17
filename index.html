@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title></title>
+  <style>
+    @import url('sp://import/css/eve.css');
+    @import url('sp://import/css/player.css');
+    @import url('sp://import/css/ui.css');
+  </style>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="sp://concert-finder/js/jquery.min.js"></script>
+  <script src="http://j.maxmind.com/app/geoip.js"></script>
+  <script src="sp://concert-finder/js/plugins.js"></script>
+  <script src="sp://concert-finder/js/script.js"></script>
+</head>
+<body>
+
+  <div id="container">
+    <header>
+      <h1>Concert Finder <span class="float">You're in <span id="location"></span></span></h1>
+    </header>
+
+    <div id="events"></div>
+  </div>
+
+<script id="event-template" type="text/x-handlebars-template">
+  <div class="event">
+    <div class="event-image">
+      <img src="{{image_url}}">
+    </div>
+    <div class="event-info">
+      <h2>{{artists.headliner}}</h2>
+      <h3>{{venue.name}}</h3>
+      <h4>{{startDate}}</h4>
+
+      <div class="artist-play">
+        <a href="{{uri}}">Play</a>
+      </div>
+    </div>
+  </div>
+</script>
+
+</body>
+</html>

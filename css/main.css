@@ -1,0 +1,55 @@
+
+
+header {
+  border-bottom:1px solid #fff;
+}
+
+h1 {
+  font-size:48px;
+  padding:20px;
+  margin-top:20px;
+}
+
+  h1 span.float {
+    float:right;
+    font-size:13px;
+  }
+
+.event {
+  overflow:hidden;
+  border-bottom:1px solid #fff;
+  padding:0;
+  margin:0;
+}
+
+  .event-image {
+    float:left;
+    display:inline;
+    padding-right:20px;
+  }
+
+    .event-image img {
+      display:block;
+    }
+
+  .event-info {
+    padding:20px 0;
+  }
+
+    .event-info h2 {
+      font-size:18px;
+      line-height:1;
+      padding:0 0 5px;
+      margin:0;
+    }
+
+    .event-info h3 {
+      font-size:14px;
+      padding:0 0 10px;
+      margin:0;
+    }
+
+    .event-info h4 {
+      font-size:11px;
+      margin:0;
+    }
