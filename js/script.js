@@ -31,6 +31,17 @@ $(function() {
     $(this).addClass('play');
     return false;
   });
+
+  $('.filter-venue').live('click', function() {
+    filter($(this).attr('data-venue'), $(this));
+
+    return false;
+  });
+
+  $('.clear-filter').live('click', function() {
+    clearFilter();
+    return false;
+  });
 });
 
 
@@ -50,9 +61,11 @@ function parseEvents(d) {
     item.image_url = item.image[3]['#text'];
     item.startDate = Date.create(item.startDate).format('{Weekday}, {Month} {ord}, {yyyy}');
 
+    log(item);
+
     var search = new models.Search(item.artists.headliner);
     search.localResults = models.LOCALSEARCHRESULTS.APPEND;
-    // search.searchAlbums = false;
+    search.searchAlbums = false;
     // search.searchTracks = false;
     search.pageSize = 5;
 
@@ -92,4 +105,18 @@ function play(uri) {
 
 function pause(uri) {
   // player.pause();
+}
+
+function filter(filter, obj) {
+  var out = $('.event[data-venue="'+filter+'"]');
+
+  $('.event').hide();
+  $(out).show();
+
+  $('.current-venue span').html(filter);
+}
+
+function clearFilter() {
+  $('.current-venue span').html('All');
+  $('.event').show(); 
 }

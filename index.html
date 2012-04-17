@@ -18,20 +18,21 @@
   <div id="container">
     <header>
       <h1>Concert Finder <span class="float">You're in <span id="location"></span></span></h1>
+      <h2 class="current-venue"><span>All</span> <a href="#" class="clear-filter">Clear filter</a></h2>
     </header>
 
     <div id="events"></div>
   </div>
 
 <script id="event-template" type="text/x-handlebars-template">
-  <div class="event">
+  <div class="event" data-venue="{{venue.name}}">
     <div class="event-image">
       {{#if uri}}<a href="{{uri}}" class="play">Play</a>{{/if}}
       <img src="{{image_url}}">
     </div>
     <div class="event-info">
       <h2>{{artists.headliner}}</h2>
-      <h3>{{venue.name}}</h3>
+      <h3><a href="#" class="filter-venue" data-venue="{{venue.name}}">{{venue.name}}</a></h3>
       <h4>{{startDate}}</h4>
     </div>
   </div>
