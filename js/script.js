@@ -46,7 +46,7 @@ $(function() {
 
 
 function findEvents(lat, lng) {
-  $.getJSON('http://ws.audioscrobbler.com/2.0/?method=geo.getevents&lat='+lat+'&long='+lng+'&api_key=b25b959554ed76058ac220b7b2e0a026&limit=102&format=json', function(d) {
+  $.getJSON('http://ws.audioscrobbler.com/2.0/?method=geo.getevents&lat='+lat+'&long='+lng+'&api_key=b25b959554ed76058ac220b7b2e0a026&limit=150&format=json', function(d) {
     log(d);
 
     parseEvents(d);

@@ -20,14 +20,19 @@ h1,h2,h3,h4,h5,h6 {
   text-shadow:0 0 1px #373737;
 }
 
+header {
+  text-align:center;
+}
+
 h1 {
-  font-size:56px;
+  font-size:68px;
   padding:20px;
-  margin:20px 0 0;
+  margin:35px 0 0;
 }
 
   h1 span.float {
-    float:right;
+    margin-top:20px;
+    display:block;
     font-size:18px;
   }
 
@@ -38,7 +43,8 @@ header h2 {
 }
 
   header h2 a {
-    float:right;
+    /*float:right;*/
+    font-size:16px;
     display:inline-block;
     margin-left:20px;
   }
@@ -48,7 +54,7 @@ header h2 {
 
 .event {
   float:left;
-  width:33%;
+  width:24.95%;
   /*height:400px;*/
   padding:0;
   margin:0;
@@ -123,7 +129,7 @@ header h2 {
   }
 
     .event-info h2 {
-      font-size:28px;
+      font-size:36px;
       line-height:1.3;
       padding:0 0 5px;
       margin:0;
