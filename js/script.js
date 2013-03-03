@@ -34,7 +34,6 @@ $(function() {
 
   $('.filter-venue').live('click', function() {
     filter($(this).attr('data-venue'), $(this));
-
     return false;
   });
 
@@ -46,7 +45,7 @@ $(function() {
 
 
 function findEvents(lat, lng) {
-  $.getJSON('http://ws.audioscrobbler.com/2.0/?method=geo.getevents&lat='+lat+'&long='+lng+'&api_key=b25b959554ed76058ac220b7b2e0a026&limit=150&format=json', function(d) {
+  $.getJSON('http://ws.audioscrobbler.com/2.0/?method=geo.getevents&lat='+lat+'&long='+lng+'&api_key=bd5217f8dfd32dd746cdc01a703aafd2&limit=50&format=json', function(d) {
     log(d);
 
     parseEvents(d);
@@ -55,7 +54,8 @@ function findEvents(lat, lng) {
 
 function parseEvents(d) {
   var source   = $("#event-template").html(),
-      template = Handlebars.compile(source);
+      template = Handlebars.compile(source),
+      container = $('#events');
 
   $.each(d.events.event, function(i,item) {
     item.image_url = item.image[3]['#text'];
@@ -79,22 +79,25 @@ function parseEvents(d) {
 
           if ( i == search.tracks.length ) {
             var html = template(item);
-            $('#events').append(html);
+            container.append(html);
           }
           // log(track.data.uri);
         });
       } else {
         var html = template(item);
-        $('#events').append(html);
+        container.append(html);
       }
     });
 
     search.appendNext();
 
     if ( i == d.events.event.length - 1 ) {
-      setTimeout(function() {
-        setHeights($('.event'));
-      }, 500);
+      container.imagesLoaded(function() {
+        container.masonry({
+          itemSelector: '.event',
+          isAnimated: false
+        });
+      });
     }
   });
 }
@@ -111,12 +114,16 @@ function filter(filter, obj) {
   var out = $('.event[data-venue="'+filter+'"]');
 
   $('.event').hide();
-  $(out).show();
+  $(out).show(0, function() {
+    // $('#events').masonry('reload');
+  });
 
   $('.current-venue span').html(filter);
 }
 
 function clearFilter() {
   $('.current-venue span').html('All');
-  $('.event').show(); 
+  $('.event').show(0, function() {
+    // $('#events').masonry('reload');
+  });
 }
